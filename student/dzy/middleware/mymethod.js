@@ -1,3 +1,5 @@
+/************ variable.js ******************************/
+
 Number.prototype.intAdd = function(value){
 	if(parseInt(this) == this){
 		return this + value;
@@ -72,3 +74,56 @@ Array.prototype.addNew = function(index,item){
 Array.prototype.delete = function(index){
 	this.splice(index,1)
 }
+
+/************ control_flow.js ******************************/
+
+let getReNumber = function(data,callback){
+	//Re=ρvL/μ
+	for(index in data){
+		if(!data[index]){
+			return console.log('data error')
+		}
+	}
+	let statusNumber = data.ρ * data.v * data.l / data.μ;
+	if(statusNumber < 2100){
+		callback('层流')
+	}else if(statusNumber>=2100 && statusNumber < 4000){
+		callback('过度状态')
+	}else{
+		callback('暂留态')
+	}
+}
+
+let getRoundNumer = function(start,end,command,index){
+	if(arguments.length ==2){
+		for(let i = start; i<= end ;i++){
+			console.log(i);
+		}
+		return;
+	};
+	switch(command){
+		case 'jump':
+			for(let i = start; i<= end ;i++){
+				if(i == index){
+					continue;
+				}
+				console.log(i);
+			};
+			break;
+		case 'shutdown':
+			for(let i = start; i<= end ;i++){
+				if(i == index){
+					break;
+				}
+				console.log(i);
+			};
+			break;
+		default:
+			console.log('command is null')
+	}		
+}
+
+
+
+module.exports.getReNumber = getReNumber;
+module.exports.getRoundNumer = getRoundNumer;
