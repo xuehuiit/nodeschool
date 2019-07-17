@@ -173,7 +173,10 @@ let setTime = function (dateString,fmt) {
     		date[i] = parseInt(dateString.slice(fmt.indexOf(RegExp.$1),fmt.indexOf(RegExp.$1)+RegExp.$1.length));
     		if(i==1){
     			date[i] = parseInt(dateString.slice(fmt.indexOf(RegExp.$1),fmt.indexOf(RegExp.$1)+RegExp.$1.length))-1;
-    		}
+    		}；
+		if(i==3){
+    			date[i] = parseInt(dateString.slice(fmt.indexOf(RegExp.$1),fmt.indexOf(RegExp.$1)+RegExp.$1.length))+8;
+    		};
     	}
     	i++;
 	}
