@@ -173,8 +173,8 @@ let setTime = function (dateString,fmt) {
     		date[i] = parseInt(dateString.slice(fmt.indexOf(RegExp.$1),fmt.indexOf(RegExp.$1)+RegExp.$1.length));
     		if(i==1){
     			date[i] = parseInt(dateString.slice(fmt.indexOf(RegExp.$1),fmt.indexOf(RegExp.$1)+RegExp.$1.length))-1;
-    		}；
-		if(i==3){
+    		};
+    		if(i==3){
     			date[i] = parseInt(dateString.slice(fmt.indexOf(RegExp.$1),fmt.indexOf(RegExp.$1)+RegExp.$1.length))+8;
     		};
     	}
@@ -184,3 +184,30 @@ let setTime = function (dateString,fmt) {
     return new Date(date[0],date[1],date[2],date[3],date[4],date[5],)
 };
 module.exports.setTime = setTime;
+
+/************ collection.js ******************************/
+
+function ArrayList(arr) {
+    this._elementData = arr || [];
+}
+ 
+let arrayListPrototype = {
+ 
+    '_arrayPrototype': Array.prototype,
+ 
+    '_getData': function () {
+        return this._elementData;
+    },
+ 
+    'listAll': function () {
+        this._getData().forEach(function (element, index, array) {
+			// element: 指向当前元素的值
+			// index: 指向当前索引
+			// array: 指向Array对象本身
+			console.log(element);//'A','B','C'
+		});
+    },
+};
+ 
+ArrayList.prototype = arrayListPrototype;
+global.ArrayList = ArrayList;
