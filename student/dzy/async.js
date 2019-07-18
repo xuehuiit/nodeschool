@@ -13,23 +13,23 @@ const fs = require('fs')
 /**************Promise******************/
 
 new Promise ((resolve,reject)=>{								//创建Promise 对象
-	fs.readFile('./test1.txt',function(err,data){				//异步读取文件	
+	fs.readFile('./test1.txt',function(err,data){						//异步读取文件	
 		if(err){
 			console.log(err);
-			reject(err)；										//错误返回reject
+			reject(err)；								//错误返回reject
 		}
-		resolve(data.toString())；								//成功返回data
+		resolve(data.toString())；							//成功返回data
 	})
 }).then((value)=>{
 	console.log('------Promise----------');
-	console.log(value);											//接受异步data数据，并显示
-	return new Promise(function(resolve,reject){				//返回新的Promise对象
+	console.log(value);									//接受异步data数据，并显示
+	return new Promise(function(resolve,reject){						//返回新的Promise对象
 		setTimeout(()=>{
 			resolve('Hi')
 		},1000)
 	}) 
 }).then((value)=>{
-	console.log(value);											//接受异步数据
+	console.log(value);									//接受异步数据
 	console.log('------await----------');
 	myawait('./test1.txt','Hi');								//然后开始启用 async部分
 })
