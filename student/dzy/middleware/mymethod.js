@@ -211,3 +211,43 @@ let arrayListPrototype = {
  
 ArrayList.prototype = arrayListPrototype;
 global.ArrayList = ArrayList;
+
+/************ flie.js ******************************/
+
+const fs = require('fs');									//加载fs模块
+let readFile = function(file){
+	fs.readFile(file,function(err,data){						//readFile的默认模式为r
+		if(err){
+			return console.error(err)
+		};
+		setTimeout(()=>{						//暂时没有使用异步流程控制，使用定时器延迟显示，
+			console.log('--------采用readFile读取--------')		//防止显示错乱，实际在writeFile里的readFile要早完成
+			console.log('读取成功')
+			console.log(data.toString())
+		},50)
+
+	});
+}
+
+
+let writeFile = function(file,str){
+	fs.writeFile(file,str,{'flag':'wx+'},function(err){	//使用模式为wx+，判断有没有文件，有则报错，无则创建
+		console.log('--------采用writeFile创建并写入数据--------')	//并读取显示内容
+		if(err){
+			console.error('文件已经存在')
+		}else{
+			console.log('创建test1.txt 成功')
+		};
+		fs.readFile('./test1.txt',function(err,data){
+			if(err){
+				return console.error(err)
+			};
+			console.log('读取成功')
+			console.log(data.toString())
+		});
+	});	
+};
+
+
+module.exports.readFile = readFile;
+module.exports.writeFile = writeFile;
