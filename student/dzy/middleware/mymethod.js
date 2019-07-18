@@ -220,7 +220,7 @@ let readFile = function(file){
 		if(err){
 			return console.error(err)
 		};
-		setTimeout(()=>{						//暂时没有使用异步流程控制，使用定时器延迟显示，
+		setTimeout(()=>{										//暂时没有使用异步流程控制，使用定时器延迟显示，
 			console.log('--------采用readFile读取--------')		//防止显示错乱，实际在writeFile里的readFile要早完成
 			console.log('读取成功')
 			console.log(data.toString())
@@ -251,3 +251,29 @@ let writeFile = function(file,str){
 
 module.exports.readFile = readFile;
 module.exports.writeFile = writeFile;
+
+/************ async.js ******************************/
+
+let asyncReadFile = function(file){
+	//return new Promise((resolve,reject)=>{
+		fs.readFile(file,(err,data)=>{
+			if(err){
+				console.log(err);
+				//reject(err);
+			}
+			//resolve(data);
+			//return data
+			console.log(data.toString())
+		})
+	//})
+}
+let sayHi = function(str){
+	//return new Promise((resolve,reject)=>{
+		setTimeout(()=>{
+			//resolve(str)
+			console.log(str)
+		},1000)
+	//})
+};
+module.exports.asyncReadFile = asyncReadFile;
+module.exports.sayHi = sayHi;
