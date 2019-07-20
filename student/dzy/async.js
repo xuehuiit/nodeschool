@@ -16,9 +16,9 @@ new Promise ((resolve,reject)=>{								//创建Promise 对象
 	fs.readFile('./test1.txt',function(err,data){						//异步读取文件	
 		if(err){
 			console.log(err);
-			reject(err)；								//错误返回reject
+			reject(err);								//错误返回reject
 		}
-		resolve(data.toString())；							//成功返回data
+		resolve(data.toString());							//成功返回data
 	})
 }).then((value)=>{
 	console.log('------Promise----------');
