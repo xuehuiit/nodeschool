@@ -255,25 +255,26 @@ module.exports.writeFile = writeFile;
 /************ async.js ******************************/
 
 let asyncReadFile = function(file){
-	//return new Promise((resolve,reject)=>{
+	return new Promise((resolve,reject)=>{
 		fs.readFile(file,(err,data)=>{
 			if(err){
 				console.log(err);
 				//reject(err);
 			}
-			//resolve(data);
-			//return data
-			console.log(data.toString())
+			resolve(data.toString());
 		})
-	//})
+	})
 }
 let sayHi = function(str){
-	//return new Promise((resolve,reject)=>{
+	return new Promise((resolve,reject)=>{
 		setTimeout(()=>{
 			//resolve(str)
-			console.log(str)
+			resolve(str);
 		},1000)
-	//})
+	})
 };
 module.exports.asyncReadFile = asyncReadFile;
 module.exports.sayHi = sayHi;
+
+
+/************ mysql.js ******************************/
