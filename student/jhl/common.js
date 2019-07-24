@@ -108,9 +108,8 @@ let List = function (items){
     this.items = items
 }
 List.prototype = Array.prototype
-List.prototype.forEach = function (){
-    console.log(this.items)
-    this.items.forEach(callback())
+List.prototype.iter = function (callback){
+    this.items.forEach(callback)
 }
 
 
