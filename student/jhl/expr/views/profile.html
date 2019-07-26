@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="/users/modify/{{user.id}}" method="post">
+    <p>
+        姓名<input type="text" name="name" value="{{user.name}}">
+    </p>
+    <p>
+        密码<input type="password" name="password" value="{{user.password}}">
+    </p>
+    <p>
+        年龄<input type="number" name="age" value="{{user.age}}">
+    </p>
+    <input type="submit">
+</form>
+</body>
+</html>

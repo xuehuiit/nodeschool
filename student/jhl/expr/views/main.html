@@ -3,59 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+<!--    <script>-->
+<!--        window.onload = function () {-->
+<!--            const name = document.getElementById('name'),-->
+<!--                age = document.getElementById('age'),-->
+<!--                post = document.getElementById('post'),-->
+<!--                create = document.getElementById('create')-->
+<!---->
+<!--                name.set = function(val){-->
+<!--                    this.value = val-->
+<!--                }-->
+<!--                name.get = function(){-->
+<!--                    return this.value-->
+<!--                }-->
+<!--            create.onclick = function (ev) {-->
+<!--                let data = {-->
+<!--                    name:name.value,-->
+<!--                    age:age.value,-->
+<!--                    password: "111"-->
+<!--                }-->
+<!--                if (ev.target==create) {-->
+<!--                    let xhr;-->
+<!---->
+<!--                    if (window.XMLHttpRequest) {-->
+<!--                        xhr = new XMLHttpRequest()-->
+<!--                    }else {-->
+<!--                        xhr = new ActiveXObject("Microsoft.XMLHTTP")-->
+<!--                    }-->
+<!--                    xhr.open("POST",'/users/create',true)-->
+<!--                    xhr.setRequestHeader('Content-Type',"application/json;charset=UTF-8");-->
+<!--                    xhr.onreadystatechange = function(){-->
+<!--                        if (xhr.status==200&&xhr.readyState==4){-->
+<!--                            document.documentElement.innerHTML = xhr.responseText-->
+<!--                        }-->
+<!--                    }-->
+<!--                    xhr.send(JSON.stringify(data))-->
+<!---->
+<!--                }-->
+<!--            }-->
+<!--        }-->
+<!--      </script>-->
     <script>
-        window.onload = function () {
-            const name = document.getElementById('name'),
-                age = document.getElementById('age'),
-                post = document.getElementById('post'),
-                create = document.getElementById('create')
+        let deletes = document.getElementsByClassName('delete')
+        for (let del of deletes){
+            del.addEventListener('click',function () {
 
-                name.set = function(val){
-                    this.value = val
-                }
-                name.get = function(){
-                    return this.value
-                }
-            create.onclick = function (ev) {
-                let data = {
-                    name:name.value,
-                    age:age.value,
-                    password: "111"
-                }
-                if (ev.target==create) {
-                    let xhr;
-
-                    if (window.XMLHttpRequest) {
-                        xhr = new XMLHttpRequest()
-                    }else {
-                        xhr = new ActiveXObject("Microsoft.XMLHTTP")
-                    }
-                    xhr.open("POST",'/users/create',true)
-                    xhr.setRequestHeader('Content-Type',"application/json;charset=UTF-8");
-                    xhr.onreadystatechange = function(){
-                        if (xhr.status==400&&xhr.readyState==4){
-                            console.log(xhr.responseText)
-                        }
-                    }
-                    xhr.send(JSON.stringify(data));
-
-                }
-            }
+            })
         }
     </script>
 </head>
 <body>
-<table>
+<p>
+    <form action="/users/create" method="post">
+        姓名<input type="text" name="name"><br>
+        年龄<input type="number" name="age"><br>
+        密码<input type="password" name="password"><br>
+        <input type="submit" value="创建">
+    </form>
+</p>
+<p>
+    <form action="/users/delete" method="post">
+        姓名<input type="text" name="name"><br>
+        <input type="submit" value="删除">
+    </form>
+</p>
+<table style="position: absolute;right: 50%;top: 5%">
     <thead>
     <tr>
         <th>姓名</th>
         <th>年龄</th>
         <th>操作</th>
-    </tr>
-    <tr>
-        <th><input type="text" id="name"></th>
-        <th><input type="text" id="age"></th>
-        <th><button id="create">创建</button></th>
     </tr>
     </thead>
     <tbody>
@@ -63,7 +80,11 @@
     <tr>
         <td>{{user.name}}</td>
         <td>{{user.age}}</td>
-        <td><button id="post{{user.id}}"></button></td>
+        <td>
+            <form action="/users/profile/{{user.id}}">
+                <input type="submit" value="查询/修改">
+            </form>
+        </td>
     </tr>
     {%endfor%}
     </tbody>
