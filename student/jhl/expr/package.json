@@ -12,8 +12,8 @@
   "dependencies": {
     "mysql2": "^1.6.5",
     "sequelize": "^5.10.2",
-    "express": "^4.17.1",
+    "express": "^4.18.2",
     "nunjucks": "^3.2.0",
-    "body-parser": "^1.19.0"
+    "body-parser": "^1.20.1"
   }
 }
